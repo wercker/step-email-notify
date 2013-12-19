@@ -1,0 +1,58 @@
+
+if [ ! -n "$WERCKER_EMAIL_NOTIFY_FROM" ]; then
+  error 'Please specify from property'
+  exit 1
+fi
+
+if [ ! -n "$WERCKER_EMAIL_NOTIFY_TO" ]; then
+  error 'Please specify to property'
+  exit 1
+fi
+
+if [ ! -n "$WERCKER_EMAIL_NOTIFY_USERNAME" ]; then
+  error 'Please specify username property'
+  exit 1
+fi
+if [ ! -n "$WERCKER_EMAIL_NOTIFY_PASSWORD" ]; then
+  error 'Please specify password property'
+  exit 1
+fi
+if [ ! -n "$WERCKER_EMAIL_NOTIFY_HOST" ]; then
+  error 'Please specify host property'
+  exit 1
+fi
+
+
+if [ ! -n "$WERCKER_EMAIL_NOTIFY_FAILED_SUBJECT" ]; then
+  if [ ! -n "$DEPLOY" ]; then
+    export WERCKER_EMAIL_NOTIFY_FAILED_SUBJECT="$WERCKER_APPLICATION_OWNER_NAME/$WERCKER_APPLICATION_NAME: build of $WERCKER_GIT_BRANCH by $WERCKER_STARTED_BY failed."
+  else
+    export WERCKER_EMAIL_NOTIFY_FAILED_SUBJECT="$WERCKER_APPLICATION_OWNER_NAME/$WERCKER_APPLICATION_NAME: deploy to $WERCKER_DEPLOYTARGET_NAME by $WERCKER_STARTED_BY failed."
+  fi
+fi
+
+if [ ! -n "$WERCKER_EMAIL_NOTIFY_PASSED_SUBJECT" ]; then
+  if [ ! -n "$DEPLOY" ]; then
+    export WERCKER_EMAIL_NOTIFY_PASSED_SUBJECT="$WERCKER_APPLICATION_OWNER_NAME/$WERCKER_APPLICATION_NAME: build of $WERCKER_GIT_BRANCH by $WERCKER_STARTED_BY passed."
+  else
+    export WERCKER_EMAIL_NOTIFY_PASSED_SUBJECT="$WERCKER_APPLICATION_OWNER_NAME/$WERCKER_APPLICATION_NAME: deploy to $WERCKER_DEPLOYTARGET_NAME by $WERCKER_STARTED_BY passed."
+  fi
+fi
+
+if [ "$WERCKER_RESULT" = "passed" ]; then
+  export WERCKER_EMAIL_NOTIFY_SUBJECT="$WERCKER_EMAIL_NOTIFY_PASSED_SUBJECT"
+  export WERCKER_EMAIL_NOTIFY_BODY="$WERCKER_EMAIL_NOTIFY_PASSED_BODY"
+else
+  export WERCKER_EMAIL_NOTIFY_SUBJECT="$WERCKER_EMAIL_NOTIFY_FAILED_SUBJECT"
+  export WERCKER_EMAIL_NOTIFY_BODY="$WERCKER_EMAIL_NOTIFY_FAILED_BODY"
+fi
+
+
+if [ "$WERCKER_EMAIL_NOTIFY_ON" = "failed" ]; then
+  if [ "$WERCKER_RESULT" = "passed" ]; then
+    echo "Skipping.."
+    return 0
+  fi
+fi
+
+python "$WERCKER_STEP_ROOT/main.py" "$WERCKER_EMAIL_NOTIFY_FROM" "$WERCKER_EMAIL_NOTIFY_TO" "$WERCKER_EMAIL_NOTIFY_SUBJECT" "$WERCKER_EMAIL_NOTIFY_BODY" "$WERCKER_EMAIL_NOTIFY_USERNAME" "$WERCKER_EMAIL_NOTIFY_PASSWORD" "$WERCKER_EMAIL_NOTIFY_HOST"
