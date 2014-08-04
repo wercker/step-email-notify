@@ -31,7 +31,6 @@ if ":" in host:
 else:
     port = None
 
-print message
 sender = mailer.Mailer(host=host, use_tls=True, usr=username, pwd=password)
 
 if(port):
