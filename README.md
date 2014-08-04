@@ -25,7 +25,7 @@ Send an email message
 
 Add EMAIL_PASSWORD as deploy target or application environment variable.
 
-
+``` yaml
     build:
         after-steps:
             - email-notify:
@@ -34,3 +34,12 @@ Add EMAIL_PASSWORD as deploy target or application environment variable.
                 username: username
                 password: $EMAIL_PASSWORD
                 host: smtp.gmail.com:587
+```
+
+# Changelog
+
+## 1.0.1:
+- switch to using email library for python. Should provide more a handling of email messages.
+
+## 1.0.0:
+- initial release
