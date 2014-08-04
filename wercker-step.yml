@@ -1,5 +1,5 @@
 name: email-notify
-version: 1.0.1-alpha4
+version: 1.0.1
 description: Send an email message
 keywords:
   - notification

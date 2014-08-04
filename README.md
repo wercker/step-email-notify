@@ -39,7 +39,8 @@ Add EMAIL_PASSWORD as deploy target or application environment variable.
 # Changelog
 
 ## 1.0.1:
-- switch to using email library for python. Should provide more a handling of email messages.
+- library embedded for sending email messages
+- add sensible default message. Just like s-kawaguchi's [email-notify step](https://github.com/s-kawaguchi/wercker-step-email-notify)
 
 ## 1.0.0:
 - initial release
