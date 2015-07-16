@@ -1,3 +1,4 @@
+#!/bin/bash
 
 if [ ! -n "$WERCKER_EMAIL_NOTIFY_FROM" ]; then
   error 'Please specify from property'
