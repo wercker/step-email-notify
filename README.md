@@ -1,6 +1,6 @@
 # email-notify
 
-Send an email message
+Send an email message (note: requires python 2.x)
 
 ## Options
 
