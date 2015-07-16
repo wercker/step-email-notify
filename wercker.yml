@@ -1,5 +1,5 @@
 box: wercker/python
 build:
   steps:
-    - validate-wercker-step  
+    - validate-wercker-step
     - shellcheck
