@@ -37,6 +37,8 @@ Add EMAIL_PASSWORD as deploy target or application environment variable.
 ```
 
 # Changelog
+## 1.1.0
+- added result (passed/failed) message for build and deploys
 
 ## 1.0.1:
 - library embedded for sending email messages
