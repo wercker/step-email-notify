@@ -2,6 +2,8 @@
 
 Send an email message (note: requires python 2.x)
 
+[![wercker status](https://app.wercker.com/status/f1ad210ce6c88ed8b437f1e08cc1e213/m "wercker status")](https://app.wercker.com/project/bykey/f1ad210ce6c88ed8b437f1e08cc1e213)
+
 ## Options
 
 ### required
