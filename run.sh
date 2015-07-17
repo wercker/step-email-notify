@@ -1,3 +1,4 @@
+#!/bin/bash
 
 if [ ! -n "$WERCKER_EMAIL_NOTIFY_FROM" ]; then
   error 'Please specify from property'
@@ -51,10 +52,10 @@ if [ ! -n "$WERCKER_EMAIL_NOTIFY_BODY" ]; then
   DEFAULT_BODY=""
 
   if [ -n "$DEPLOY" ]; then
-    DEFAULT_BODY="$DEFAULT_BODY\nDeploy $WERCKER_RESULT\n\nSee <$WERCKER_DEPLOY_URL>\n"
+    DEFAULT_BODY="Deploy $WERCKER_RESULT.\n\nSee <$WERCKER_DEPLOY_URL>\n"
     DEFAULT_BODY="$DEFAULT_BODY\nDeploy Target: $WERCKER_DEPLOYTARGET_NAME"
   else
-    DEFAULT_BODY="$DEFAULT_BODY\nBuild $WERCKER_RESULT.\n\nSee <$WERCKER_BUILD_URL>\n"
+    DEFAULT_BODY="Build $WERCKER_RESULT.\n\nSee <$WERCKER_BUILD_URL>\n"
   fi
 
   GIT_COMMIT_MESSAGE=$(git log -n 1 --format=%s "$WERCKER_GIT_COMMIT" || echo "")
