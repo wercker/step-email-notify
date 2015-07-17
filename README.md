@@ -1,6 +1,8 @@
 # email-notify
 
-Send an email message
+Send an email message (note: requires python 2.x)
+
+[![wercker status](https://app.wercker.com/status/f1ad210ce6c88ed8b437f1e08cc1e213/m "wercker status")](https://app.wercker.com/project/bykey/f1ad210ce6c88ed8b437f1e08cc1e213)
 
 ## Options
 
@@ -37,6 +39,8 @@ Add EMAIL_PASSWORD as deploy target or application environment variable.
 ```
 
 # Changelog
+## 1.1.0
+- added result (passed/failed) message for build and deploys
 
 ## 1.0.1:
 - library embedded for sending email messages
