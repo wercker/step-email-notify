@@ -76,4 +76,11 @@ if [ "$WERCKER_EMAIL_NOTIFY_ON" = "failed" ]; then
   fi
 fi
 
+if [ -n "$WERCKER_EMAIL_NOTIFY_BRANCH" ]; then 
+  if [ "$WERCKER_GIT_BRANCH" != "$WERCKER_EMAIL_NOTIFY_BRANCH" ]; then
+    echo "Email notification not necessary on this branch. Skipping.."
+    return 0
+  fi
+fi
+
 python "$WERCKER_STEP_ROOT/main.py" "$WERCKER_EMAIL_NOTIFY_FROM" "$WERCKER_EMAIL_NOTIFY_TO" "$WERCKER_EMAIL_NOTIFY_SUBJECT" "$WERCKER_EMAIL_NOTIFY_BODY" "$WERCKER_EMAIL_NOTIFY_USERNAME" "$WERCKER_EMAIL_NOTIFY_PASSWORD" "$WERCKER_EMAIL_NOTIFY_HOST"
