@@ -1,0 +1,35 @@
+name: email-notify
+version: 2.0.0
+summary: Send an email message
+tags:
+  - notification
+  - email
+properties:
+- name: from
+  type: string
+  required: true
+- name: to
+  type: string
+  required: true
+- name: failed-subject
+  type: string
+- name: passed-subject
+  type: string
+- name: failed-body
+  type: string
+- name: passed-body
+  type: string
+- name: username
+  type: string
+  required: true
+- name: password
+  type: string
+  required: true
+- name: host
+  type: string
+  required: true
+- name: on
+  type: string
+  default: always
+- name: branch
+  type: string

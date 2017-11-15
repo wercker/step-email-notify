@@ -1,5 +1,14 @@
-box: wercker/python
+box: python:2
+
 build:
   steps:
-    - validate-wercker-step
     - shellcheck
+
+publish:
+  steps:
+    - install-packages:
+        packages: ca-certificates
+
+    - publish-step:
+        auth_token: $STEPS_AUTH_TOKEN
+        owner: wercker
